@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import {useCssVar} from '@vueuse/core'
+
+const change = (num:number) => {
+  //  不引入useCssVar时 
+  // vue内部是通过设置 
+  // document?.documentElement?.style.getPropertyValue('--size')
+  // document?.documentElement?.style.setProperty('--size', num + 'px')
+  
+   const size = useCssVar('--size')
+   size.value = num + 'px'
+}
 </script>
 
 <template>
@@ -10,6 +21,12 @@ import HelloWorld from './components/HelloWorld.vue'
       <div>2</div>
       <div>3</div>
     </header>
+    <div>
+      <button @click="change(36)">大</button>
+      <button @click="change(24)">中</button>
+      <button @click="change(14)">小</button>
+    </div>
+   
   </div>
 
 
@@ -17,6 +34,9 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped lang="less">
+:root {
+  --size:14px;
+}
 .header {
   display: flex;
 
@@ -25,6 +45,7 @@ import HelloWorld from './components/HelloWorld.vue'
     line-height: 50px;
     color: #fff;
     text-align: center;
+    font-size: var(--size);
   }
 
   div:nth-child(1) {
