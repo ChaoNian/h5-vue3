@@ -9,6 +9,7 @@ const change = (num:number) => {
   // document?.documentElement?.style.getPropertyValue('--size')
   // document?.documentElement?.style.setProperty('--size', num + 'px')
   
+  // 刷新后 会恢复，可以在localstorage 存一份数据
    const size = useCssVar('--size')
    size.value = num + 'px'
 }
@@ -27,6 +28,8 @@ const change = (num:number) => {
       <button @click="change(14)">小</button>
     </div>
    
+    <div class="flex. red m-10">121212</div>
+    <div class="cike">wewewe</div>
   </div>
 
 
